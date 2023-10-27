@@ -1,0 +1,43 @@
+# The host interface for the container(s). Run `ip -br a` to see a list
+# INTERFACE=eth0
+INTERFACE=eth0
+
+# To get a list of timezones view the files in `/usr/share/zoneinfo`
+# TZ=UTC
+TZ=UTC
+
+# The hostname of the instance of the docker container
+# HOSTNAME=dns01
+HOSTNAME=dns01
+
+# The IP subnet in the form NETWORK/PREFIX_LENGTH
+# SUBNET=192.168.10.0/24
+SUBNET=192.168.10.0/24
+
+# The IP address of the docker container
+# IPADDR=192.168.10.1
+IPADDR=192.168.10.1
+
+# The IP address that will be set on the host to manage the docker container
+# MGMTIP=192.168.10.2
+MGMTIP=192.168.10.2
+
+# The IP of the gateway.
+# Enter a valid ip from the subnet range or blank to have one assigned
+# GATEWAY=192.168.10.254
+GATEWAY=192.168.10.254
+
+# The ports for web management access of the docker container(s).
+# ttyd tail, ttyd tmux, frontail, and tmux respectively
+# HTTPPORT1=8080
+# HTTPPORT2=8081
+# HTTPPORT3=8082
+# HTTPPORT4=8083
+HTTPPORT1=8080
+HTTPPORT2=8081
+HTTPPORT3=8082
+HTTPPORT4=8083
+
+# The name of the docker image without the repository name
+# APPNAME=dns
+APPNAME=dns
