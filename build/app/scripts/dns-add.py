@@ -5,7 +5,7 @@ Create a file in the format like /etc/hosts
 '''
 
 __version__ = '0.0.1'
-__date__ = '2023-10-27'
+__date__ = '2023-11-01'
 __author__ = 'Todd Wintermute'
 
 import argparse
@@ -65,6 +65,9 @@ args = parser.parse_args()
 csv_file = args.csv_file
 hosts_file = args.hosts_file
 
+if not hosts_file.exists():
+    hosts_file.touch()
+
 columns = ['ip', 'name']
 csvdata = read_csv(csv_file, columns)
 
@@ -78,12 +81,13 @@ for row in csvdata:
                 ipdict[row['ip']].append(alias)
 
 hosts_rows = ['\t'.join((ip,*names)) for ip, names in ipdict.items()]
-hosts_text = '\n'.join(hosts_rows) + '\n'
 
-if hosts_text:
+if hosts_rows:
+    hosts_text = '\n'.join(hosts_rows) + '\n'
     hosts_file.write_text(hosts_text)
-    print(f'Added hosts to {hosts_file}')
+    print(f'Wrote hosts to {hosts_file}')
 else:
-    print(f'No entries found. Nothing added to {hosts_file}')
+    print(f'No entries found. Nothing written to {hosts_file}')
 print(f'Current DNS entries:')
 print(hosts_text)
+print("Don't forget to restart your DNS service.")
