@@ -1,6 +1,6 @@
 ---
 title: README
-date: 2023-10-27
+date: 2023-11-03
 ---
 
 # toddwint/dns
@@ -63,21 +63,21 @@ Create the docker macvlan interface.
 ```bash
 docker network create -d macvlan --subnet=192.168.10.0/24 --gateway=192.168.10.254 \
     --aux-address="mgmt_ip=192.168.10.2" -o parent="eth0" \
-    --attachable "eth0-macvlan"
+    --attachable "dns01"
 ```
 
 Create a management macvlan interface.
 
 ```bash
-sudo ip link add "eth0-macvlan" link "eth0" type macvlan mode bridge
-sudo ip link set "eth0-macvlan" up
+sudo ip link add "dns01" link "eth0" type macvlan mode bridge
+sudo ip link set "dns01" up
 ```
 
 Assign an IP on the management macvlan interface plus add routes to the docker container.
 
 ```bash
-sudo ip addr add "192.168.10.2/32" dev "eth0-macvlan"
-sudo ip route add "192.168.10.0/24" dev "eth0-macvlan"
+sudo ip addr add "192.168.10.2/32" dev "dns01"
+sudo ip route add "192.168.10.0/24" dev "dns01"
 ```
 
 ## Sample `docker run` command
@@ -85,7 +85,7 @@ sudo ip route add "192.168.10.0/24" dev "eth0-macvlan"
 ```bash
 docker run -dit \
     --name "dns01" \
-    --network "eth0-macvlan" \
+    --network "dns01" \
     --ip "192.168.10.1" \
     -h "dns01" \
     -v "${PWD}/upload:/opt/dns/upload" \
@@ -143,6 +143,6 @@ services:
 
 networks:
     default:
-        name: "eth0-macvlan"
+        name: "dns01"
         external: true
 ```

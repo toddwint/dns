@@ -90,4 +90,3 @@ else:
     print(f'No entries found. Nothing written to {hosts_file}')
 print(f'Current DNS entries:')
 print(hosts_text)
-print("Don't forget to restart your DNS service.")
