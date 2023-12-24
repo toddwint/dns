@@ -1,0 +1,90 @@
+[
+ [
+  "Launch tmux",
+  "/opt/dns/scripts/tmux.sh"
+ ],
+ [
+  "Search logs",
+  [
+   [
+    "dns log",
+    "tail -F -n +1 /opt/dns/logs/dns.log | fzf --tac --no-sort"
+   ]
+  ]
+ ],
+ [
+  "View logs",
+  [
+   [
+    "dns log",
+    "more /opt/dns/logs/dns.log"
+   ]
+  ]
+ ],
+ [
+  "View configuration",
+  [
+   [
+    "hosts.csv",
+    "column.py /opt/dns/upload/hosts.csv | more"
+   ],
+   [
+    "dns configuration",
+    "more /etc/dnsmasq.conf"
+   ],
+   [
+    "IP addresses",
+    "ip addr show | more"
+   ],
+   [
+    "Routing table",
+    "ip route show | more"
+   ],
+   [
+    "ARP or NDISC cache",
+    "ip neighbor show | more"
+   ],
+   [
+    "Network devices",
+    "ip link show | more"
+   ]
+  ]
+ ],
+ [
+  "Debug scripts",
+  [
+   [
+    "Show DNS entries",
+    "/opt/dns/debug/show_dns.sh"
+   ],
+   [
+    "Reload DNS entries",
+    "/opt/dns/debug/reload_dns.sh"
+   ],
+   [
+    "Show processes",
+    "ps ax | more"
+   ],
+   [
+    "Show sockets",
+    "ss --all --numeric --processes | more"
+   ],
+   [
+    "ttyd1 log",
+    "more /opt/dns/logs/ttyd1.log"
+   ],
+   [
+    "ttyd2 log",
+    "more /opt/dns/logs/ttyd2.log"
+   ],
+   [
+    "frontail log",
+    "more /opt/dns/logs/frontail.log"
+   ],
+   [
+    "tailon log",
+    "more /opt/dns/logs/tailon.log"
+   ]
+  ]
+ ]
+]
