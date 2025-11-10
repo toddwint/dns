@@ -2,7 +2,7 @@ name: ${HOSTNAME}
 
 services:
   dns:
-    image: toddwint/dns
+    image: toddwint/${APPNAME}
     hostname: ${HOSTNAME}
     ports:
         - "${IPADDR}:${HTTPPORT1}:${HTTPPORT1}"
